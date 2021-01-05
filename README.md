@@ -19,6 +19,13 @@ yarn start
 
 ## Requêtes
 
+### Exemple de reqûete
+```javascript
+    fetch("http://localhost:4040/articles").then((response) => {
+        response.json().then((data) => (articles = data.data));
+    });
+```
+
 ### Article(s)
 
 #### Obtenir la liste des articles
