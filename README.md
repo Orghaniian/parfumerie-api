@@ -46,6 +46,7 @@ yarn start
 | disponible        |     Boolean      |   L'article est-il disponible ? |
 | en_cadeau        |     Boolean      |   L'article est-il offert en cadeau ? |
 | echangeable        |     Boolean      |   L'article est-il échangeable contre des points de fidélité ? |
+
 :warning: :warning: :construction: :construction: :construction: :construction: :construction: :warning: :warning: :warning:
 #### :wrench: Modifier un article :wrench:
 
