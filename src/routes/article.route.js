@@ -1,3 +1,5 @@
+const HttpException = require('../utils/HttpException');
+
 const express = require('express'),
     router = express.Router();
 
@@ -16,19 +18,26 @@ router.get('/:no', function (req, res) {
 
 // créer nouvel article
 router.post('/', function (req, res) {
-    let sql = `INSERT INTO article(nom, prix_unitaire) VALUES (?)`;
-    let values = [
-        req.body.nom,
-        req.body.prix_unitaire
-    ];
-    db.query(sql, [values], function (err, data, fields) {
-        if (err) throw err;
-        res.json({
-            status: 200,
-            no_article: data.insertId,
-            message: "Nouvel article ajouté avec succès"
+    const keysToTest = ["nom"]
+    if(!keysToTest.every(key => Object.keys(req.body).includes(key))){
+        const missingKeys = keysToTest.filter(key => !Object.keys(req.body).includes(key))
+        throw new HttpException(400, "Paramètre(s) manquant", {parametresManquants: missingKeys})
+    }else{
+        let sql = `INSERT INTO article(nom, prix_unitaire) VALUES (?)`;
+        let values = [
+            req.body.nom,
+            req.body.prix_unitaire
+        ];
+        db.query(sql, [values], function (err, data, fields) {
+            if (err) throw err;
+            res.json({
+                status: 200,
+                no_article: data.insertId,
+                message: "Nouvel article ajouté avec succès"
+            })
         })
-    })
+    }
+    
 });
 
 
