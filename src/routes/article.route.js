@@ -8,11 +8,20 @@ router.get('/:no', function (req, res) {
     let sql = `SELECT * FROM article WHERE No_article = ${db.escape(req.params.no)}`;
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
-        res.json({
-            status: 200,
-            data,
-            message: "Article récupéré avec succès"
-        })
+        if(data.length){
+            res.json({
+                status: 200,
+                data,
+                message: "Article récupéré avec succès"
+            })
+        }else{
+            res.json({
+                status: 204,
+                data,
+                message: "Aucun article correspondant"
+            })  
+        }
+        
     })
 });
 

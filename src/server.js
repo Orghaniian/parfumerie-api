@@ -34,9 +34,13 @@ app.use(bodyParser.json());
 
 const articlesRouter = require('./routes/articles.route');
 const articleRouter = require('./routes/article.route')
+const clientsRouter  = require('./routes/clients.route')
+const clientRouter  = require('./routes/client.route')
 // use router
 app.use('/articles', articlesRouter);
 app.use('/article', articleRouter);
+app.use('/clients', clientsRouter);
+app.use('/client', clientRouter);
 
 
 app.all('*', (req, res, next) => {
