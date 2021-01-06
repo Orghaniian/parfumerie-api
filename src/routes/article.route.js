@@ -21,7 +21,6 @@ router.get('/:no', function (req, res) {
                 message: "Aucun article correspondant"
             })  
         }
-        
     })
 });
 
@@ -50,7 +49,6 @@ router.post('/', function (req, res) {
             })
         })
     }
-    
 });
 
 
@@ -65,7 +63,6 @@ router.put('/:no', function (req, res) {
             message: "Modification article réussie"
         })
     })
-
 })
 
 module.exports = router;

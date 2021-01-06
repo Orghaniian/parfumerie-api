@@ -22,7 +22,6 @@ router.get('/:id', function (req, res) {
                 message: "Aucun client correspondant"
             })  
         }
-        
     })
 });
 
@@ -53,5 +52,17 @@ router.post('/', function (req, res) {
         })
     }
 });
+
+//update client
+router.put('/:no', function (req, res) {
+    let sql = `UPDATE client SET ? WHERE Code_client = ${req.params.no}`;
+    db.query(sql, req.body, function (err, data, fields) {
+        if (err) throw err;
+        res.json({
+            status: 200,
+            message: "Modification client réussie"
+        })
+    })
+})
 
 module.exports = router;
