@@ -7,17 +7,9 @@
     * [Exemple de requête](#exemple-de-requ-te)
     * [Article(s)](#article-s-)
       + [Obtenir la liste des articles](#obtenir-la-liste-des-articles)
-        - [Requête HTTP](#requ-te-http)
       + [Obtenir les détails d'un article](#obtenir-les-d-tails-d-un-article)
-        - [Requête HTTP](#requ-te-http-1)
-        - [Paramètres](#param-tres)
       + [Créer un article](#cr-er-un-article)
-        - [Requête HTTP](#requ-te-http-2)
-        - [Paramètres](#param-tres-1)
-        - [Réponse](#r-ponse)
       + [Modifier un article](#modifier-un-article)
-        - [Requête HTTP](#requ-te-http-3)
-        - [Paramètres](#param-tres-2)
  
 ## Mise en route
 
