@@ -20,12 +20,12 @@ yarn install
 
 ### Démarrage en mode développement (Hot reload)
 ```
-yarn dev
+yarn dev/npm run dev
 ```
 
 ### Démarrage
 ```
-yarn start
+yarn start/npm run start
 ```
 
 ## Requêtes
