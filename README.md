@@ -44,6 +44,11 @@ yarn start/npm run start
 ##### Requête HTTP
 `GET http://localhost:4040/articles`
 
+#### Obtenir la liste des articles échangeables
+
+##### Requête HTTP
+`GET http://localhost:4040/articles/echangeables`
+
 
 #### Obtenir les détails d'un article
 
