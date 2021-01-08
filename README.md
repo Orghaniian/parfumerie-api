@@ -44,7 +44,16 @@ yarn start/npm run start
 ##### Requête HTTP
 `GET http://localhost:4040/articles`
 
-#### Obtenir la liste des articles échangeables
+##### Paramètres
+| Champ       |     Type     |        Description |
+| :------------ | :-------------: | -------------: |
+| nom       |     String     |       (Optionnel) Nom de l'article (peut être partiel, renverra les articles correspondant) |
+| stock     |   BOOLEAN    |      (Optionnel) renvoie les articles en stock sur le paramètre est présent |
+| cadeau     |   BOOLEAN    |      (Optionnel)  |
+| disponible     |   BOOLEAN    |      (Optionnel)  |
+| echangeable     |   BOOLEAN    |      (Optionnel)  |
+| orderBY     |   String    |      (Optionnel) vaut croi ou dec pour trier par prix croissant ou decroissant |
+| limit     |   int    |      (Optionnel) nombre d'articles maximum  |
 
 ##### Requête HTTP
 `GET http://localhost:4040/articles/echangeables`
