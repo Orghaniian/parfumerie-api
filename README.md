@@ -102,5 +102,75 @@ L'objet réponse contient une propriété "no_article" qui correspond au numéro
 | en_cadeau        |     Boolean      |   (Optionnel) L'article est-il offert en cadeau ? |
 | echangeable        |     Boolean      |   (Optionnel) L'article est-il échangeable contre des points de fidélité ? |
 
+
+### Commande(s)
+
+#### Obtenir la liste des Commandes
+
+##### Requête HTTP
+`GET http://localhost:4040/commandes`
+
+
+#### Obtenir les détails d'une commande ( triées par date décroissante)
+
+##### Requête HTTP
+`GET http://localhost:4040/commande/:no_commande?limit=[limite]`
+
+##### Paramètres
+| Champ       |     Type     |        Description |
+| :------------ | :-------------: | -------------: |
+| limit     |   int    |      (Optionnel) nombre de commandes maximum  |
+
+#### Créer une commande
+
+##### Requête HTTP
+`POST  http://localhost:4040/commande`
+
+##### Paramètres
+| Champ       |     Type     |        Description |
+| :------------ | :-------------: | -------------: |
+| prix       |     String     |         |
+| frais_livraison     |   Float    |      Prix unitaire de l'article |
+| code_client        |     Boolean      |   L'article est-il disponible ? |
+| date_commande        |     Int      |   (Optionnel) Quantite d'exemplaires de l'article en stock |
+| statut        |     Boolean      |   (Optionnel) L'article est-il offert en cadeau ? |
+
+##### Réponse
+
+L'objet réponse contient une propriété "no_commande" qui correspond au numéro de la commande ajoutée
+
+<details>
+    <summary>Exemple</summary>
+
+```json
+{
+    "status": 200,
+    "no_commande": 11,
+    "message": "Nouvelle commande ajoutée avec succès"
+}
+```
+</details>
+
+#### Modifier une commande
+
+##### Requête HTTP
+`PUT http://localhost:4040/commande/:no_commande`
+
+##### Paramètres
+| Champ       |     Type     |        Description |
+| :------------ | :-------------: | -------------: |
+| prix       |     String     |         |
+| frais_livraison     |   Float    |      Prix unitaire de l'article |
+| code_client        |     Boolean      |   L'article est-il disponible ? |
+| date_commande        |     Int      |   (Optionnel) Quantite d'exemplaires de l'article en stock |
+| statut        |     Boolean      |   (Optionnel) L'article est-il offert en cadeau ? |
+
  :wrench:
 :warning: :warning: :construction: :construction: :construction: :construction: :construction: :warning: :warning: :warning:
+
+
+## A faire
+-get/post/put tables
+-commande
+-get commandes liées à client
+-get articles liés à client

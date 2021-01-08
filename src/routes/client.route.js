@@ -31,7 +31,14 @@ router.get('/:id', function (req, res) {
 
 // créer nouveau client
 router.post('/', function (req, res) {
-    testParamsValid(req)
+    const keysToTest = ["nom"]
+    if(!keysToTest.every(key => Object.keys(req.body).includes(key))){
+        const missingKeys = keysToTest.filter(key => !Object.keys(req.body).includes(key))
+        throw new HttpException(400, "Paramètre(s) manquant", {parametresManquants: missingKeys})
+    }
+    if(req.body.email && !isEmail(req.body.email)){
+        throw new HttpException(400, "Email invalide", {emailInvalde: req.body.email})
+    }
     let sql = `INSERT INTO client(nom, facebook, instagram, email, telephone) VALUES (?)`;
     let values = [
         req.body.nom,
@@ -52,6 +59,9 @@ router.post('/', function (req, res) {
 
 //update client
 router.put('/:no', function (req, res) {
+    if(req.body.email && !isEmail(req.body.email)){
+        throw new HttpException(400, "Email invalide", {emailInvalde: req.body.email})
+    }
     let sql = `UPDATE client SET ? WHERE Code_client = ${req.params.no}`;
     db.query(sql, req.body, function (err, data, fields) {
         if (err) throw err;
@@ -64,13 +74,3 @@ router.put('/:no', function (req, res) {
 
 
 module.exports = router;
-
-function testParamsValid(req){
-    const keysToTest = ["nom"]
-    if(!keysToTest.every(key => Object.keys(req.body).includes(key))){
-        const missingKeys = keysToTest.filter(key => !Object.keys(req.body).includes(key))
-        throw new HttpException(400, "Paramètre(s) manquant", {parametresManquants: missingKeys})
-    }else if(req.body.email && !isEmail(req.body.email)){
-        throw new HttpException(400, "Email invalide", {emailInvalde: req.body.email})
-    }
-}
