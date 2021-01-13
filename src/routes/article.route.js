@@ -11,7 +11,7 @@ router.get('/:no', function (req, res) {
         if(data.length){
             res.json({
                 status: 200,
-                data,
+                data: data[0],
                 message: "Article récupéré avec succès"
             })
         }else{

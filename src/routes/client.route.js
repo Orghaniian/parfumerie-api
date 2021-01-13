@@ -16,7 +16,7 @@ router.get('/:id', function (req, res) {
         if(data.length){
             res.json({
                 status: 200,
-                data,
+                data: data[0],
                 message: "Client récupéré avec succès"
             })  
         }else{
