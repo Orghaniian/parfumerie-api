@@ -18,7 +18,6 @@ orderBy croi/dec
 router.get('/', function (req, res) {
     let limit = isNumeric(req.query.limit) ? req.query.limit : 10;
     let sql = `SELECT * FROM article WHERE nom LIKE '${req.query.nom ? req.query.nom.trim() : ""}%' `;
-    console.log(req.query)
     if (req.query.echangeable) sql += " AND echangeable"
     if (req.query.cadeau) sql += " AND en_cadeau"
     if (req.query.disponible) sql += " AND disponible"
