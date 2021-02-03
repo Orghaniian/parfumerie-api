@@ -65,4 +65,16 @@ router.put('/:no', function (req, res) {
     })
 })
 
+//delete article
+router.delete('/:no', function (req, res) {
+    let sql = `DELETE FROM article WHERE No_article = ${db.escape(req.params.no)}`;
+    db.query(sql, req.body, function (err, data, fields) {
+        if (err) throw err;
+        res.json({
+            status: 200,
+            message: "Suppression article réussie"
+        })
+    })
+})
+
 module.exports = router;

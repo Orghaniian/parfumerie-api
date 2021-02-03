@@ -73,4 +73,17 @@ router.put('/:no', function (req, res) {
 })
 
 
+//delete client
+router.delete('/:no', function (req, res) {
+    let sql = `DELETE FROM client WHERE Code_client = ${db.escape(req.params.no)}`;
+    db.query(sql, req.body, function (err, data, fields) {
+        if (err) throw err;
+        res.json({
+            status: 200,
+            message: "Suppression client réussie"
+        })
+    })
+})
+
+
 module.exports = router;
