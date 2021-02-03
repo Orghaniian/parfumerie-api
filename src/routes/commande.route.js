@@ -69,7 +69,7 @@ router.post('/', function (req, res) {
 });
 
 // modifier une commande
-router.post('/:no', function (req, res) {
+router.put('/:no', function (req, res) {
     let sql = `UPDATE commande SET ? WHERE No_commande = ${req.params.no}`;
     db.query(sql, [values], function (err, data, fields) {
         if (err) throw err;
