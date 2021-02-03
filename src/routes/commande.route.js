@@ -71,7 +71,7 @@ router.post('/', function (req, res) {
 // modifier une commande
 router.put('/:no', function (req, res) {
     let sql = `UPDATE commande SET ? WHERE No_commande = ${req.params.no}`;
-    db.query(sql, [values], function (err, data, fields) {
+    db.query(sql, req.body, function (err, data, fields) {
         if (err) throw err;
         res.json({
             status: 200,
