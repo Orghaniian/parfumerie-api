@@ -7,6 +7,11 @@ const express = require('express'),
 router.get('/', function (req, res) {
     let limit = isNumeric(req.query.limit) ? req.query.limit : 10;
     let sql = `SELECT * FROM commande ORDER BY Date_commande LIMIT ${limit}`;
+    if (req.query.orderBy) {
+        if (req.query.orderBy === "asc") sql += " ORDER BY Date_commande ASC"
+        else if (req.query.orderBy === "dec") sql += " ORDER BY Date_commande DESC"
+        else if (req.query.orderBy === "num") sql += " ORDER BY No_commande"
+    }
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
         res.json({
