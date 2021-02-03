@@ -12,6 +12,7 @@ router.get('/', function (req, res) {
         else if (req.query.orderBy === "dec") sql += " ORDER BY Date_commande DESC"
         else if (req.query.orderBy === "num") sql += " ORDER BY No_commande"
     }
+
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
         res.json({
