@@ -22,7 +22,7 @@ router.get('/', function (req, res) {
     if (req.query.cadeau) sql += " AND en_cadeau"
     if (req.query.disponible) sql += " AND disponible"
     if (req.query.echangeable) sql += " AND echangeable"
-    if (req.query.stock) sql += " AND quantite_en_stock"
+    if (req.query.stock) sql += " AND quantite_en_stock > 0"
     if (req.query.orderBy) {
         if (req.query.orderBy === "asc") sql += " ORDER BY Prix_unitaire ASC"
         else if (req.query.orderBy === "dec") sql += " ORDER BY Prix_unitaire DESC"
