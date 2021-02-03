@@ -53,11 +53,17 @@ router.post('/', function (req, res) {
                     })
                 })
             })
-            res.json({
-                status: 200,
-                No_commande: data.insertId,
-                message: "Nouvelle commande ajouté avec succès"
+
+            const sql = `UPDATE client SET Points = Points - ${req.body.prix} WHERE Code_client = ${req.body.code_client}`
+            db.query(sql, function (err4, data4, fields4){
+                if (err4) throw err4;
+                res.json({
+                    status: 200,
+                    No_commande: data.insertId,
+                    message: "Nouvelle commande ajouté avec succès"
+                })
             })
+
         })
     }
 });
