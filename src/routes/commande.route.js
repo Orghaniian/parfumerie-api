@@ -15,7 +15,7 @@ router.get('/:id', function (req, res) {
                 if (data.length){
                     res.json({
                         status: 200,
-                        data: { ...data[0], ...data2},
+                        data: { ...data[0], articles: data2},
                         message: "Commande récupéré avec succès"
                     })
                 }else{
