@@ -9,11 +9,24 @@ router.get('/:id', function (req, res) {
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
         if (data.length) {
-            res.json({
-                status: 200,
-                data: data[0],
-                message: "Commande récupéré avec succès"
+            sql = `SELECT * FROM commande_has_article WHERE No_commande = ${db.escape(req.params.id)}`
+            db.query(sql, function (err2, data2, fields2){
+                if (err2) throw err2;
+                if (data.length){
+                    res.json({
+                        status: 200,
+                        data: { ...data[0], ...data2},
+                        message: "Commande récupéré avec succès"
+                    })
+                }else{
+                    res.json({
+                        status: 204,
+                        data,
+                        message: "Aucun article ne correspond à la commande"
+                    })
+                }
             })
+
         } else {
             res.json({
                 status: 204,
