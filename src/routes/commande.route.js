@@ -12,11 +12,23 @@ router.get('/:id', function (req, res) {
             sql = `SELECT * FROM commande_has_article WHERE No_commande = ${db.escape(req.params.id)}`
             db.query(sql, function (err2, data2, fields2){
                 if (err2) throw err2;
-                if (data.length){
-                    res.json({
-                        status: 200,
-                        data: { ...data[0], articles: data2},
-                        message: "Commande récupéré avec succès"
+                if (data2.length){
+                    sql = `SELECT nom, no_article FROM article WHERE no_article IN (${data2.map(article => article.No_article).join(',')})`
+                    db.query(sql, function (err3, data3, fields3){
+                        if(err3) throw err3;
+                        const articles = []
+                        data2.forEach(article => {
+                            data3.forEach(article2 => {
+                                if (article.No_article === article2.no_article)
+                                    articles.push({ ...article, nom: article2.nom})
+                            })
+                        })
+                        console.log(articles)
+                        res.json({
+                            status: 200,
+                            data: { ...data[0], articles},
+                            message: "Commande récupéré avec succès"
+                        })
                     })
                 }else{
                     res.json({
