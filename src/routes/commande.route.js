@@ -23,7 +23,6 @@ router.get('/:id', function (req, res) {
                                     articles.push({ ...article, nom: article2.nom})
                             })
                         })
-                        console.log(articles)
                         res.json({
                             status: 200,
                             data: { ...data[0], articles},
