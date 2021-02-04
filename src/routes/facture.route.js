@@ -8,6 +8,7 @@ router.get('/:no', function (req, res) {
     let sql = `SELECT * FROM facture WHERE No_facture = ${db.escape(req.params.no)}`;
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
+        console.log(req.params)
         if(data.length){
             res.json({
                 status: 200,
@@ -26,7 +27,8 @@ router.get('/:no', function (req, res) {
 
 // créer nouvelle facture
 router.post('/', function (req, res) {
-    const keysToTest = ["Date_facture", "Commande_No_commande"]
+    console.log(req.body)
+    const keysToTest = ["date_facture", "commande_no_commande"]
     if(!keysToTest.every(key => Object.keys(req.body).includes(key))){
         const missingKeys = keysToTest.filter(key => !Object.keys(req.body).includes(key))
         throw new HttpException(400, "Paramètre(s) manquant", {parametresManquants: missingKeys})
@@ -34,7 +36,7 @@ router.post('/', function (req, res) {
         let sql = `INSERT INTO facture(Date_facture, Commande_No_commande) VALUES (?)`;
         let values = [
             req.body.date_facture,
-            req.body.no_commande
+            req.body.commande_no_commande
         ];
         db.query(sql, [values], function (err, data, fields) {
             if (err) throw err;

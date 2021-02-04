@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 
 
 
-
+const factureRouter = require('./routes/facture.route');
 const articlesRouter = require('./routes/articles.route');
 const articleRouter = require('./routes/article.route')
 const clientsRouter  = require('./routes/clients.route')
@@ -40,6 +40,7 @@ const commandesRouter = require('./routes/commandes.route')
 const commandeRouter = require('./routes/commande.route')
 const authentificationRouter = require('./routes/authentification.route')
 // use router
+app.use('/facture', factureRouter);
 app.use('/articles', articlesRouter);
 app.use('/article', articleRouter);
 app.use('/clients', clientsRouter);
