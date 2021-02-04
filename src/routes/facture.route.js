@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
             if (err) throw err;
             res.json({
                 status: 200,
-                no_article: data.insertId,
+                no_facture: data.insertId,
                 message: "Nouvelle facture ajouté avec succès"
             })
         })
