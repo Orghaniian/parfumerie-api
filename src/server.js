@@ -39,6 +39,7 @@ const clientRouter  = require('./routes/client.route')
 const commandesRouter = require('./routes/commandes.route')
 const commandeRouter = require('./routes/commande.route')
 const authentificationRouter = require('./routes/authentification.route')
+const utilisateurRouter = require('./routes/utilisateur.route')
 // use router
 app.use('/facture', factureRouter);
 app.use('/articles', articlesRouter);
@@ -48,6 +49,7 @@ app.use('/client', clientRouter);
 app.use('/commandes', commandesRouter);
 app.use('/commande', commandeRouter);
 app.use('/authentification', authentificationRouter);
+app.use('/utilisateur', utilisateurRouter)
 
 
 app.all('*', (req, res, next) => {
