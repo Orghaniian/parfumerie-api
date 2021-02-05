@@ -31,14 +31,15 @@ router.post('/', function (req, res) {
         const missingKeys = keysToTest.filter(key => !Object.keys(req.body).includes(key))
         throw new HttpException(400, "Paramètre(s) manquant", {parametresManquants: missingKeys})
     }else{
-        let sql = `INSERT INTO article(nom, prix_unitaire, quantite_en_stock, disponible, en_cadeau, echangeable) VALUES (?)`;
+        let sql = `INSERT INTO article(nom, prix_unitaire, quantite_en_stock, disponible, en_cadeau, echangeable, image) VALUES (?)`;
         let values = [
             req.body.nom,
             req.body.prix_unitaire,
             req.body.quantite_en_stock,
             req.body.disponible,
             req.body.en_cadeau,
-            req.body.echangeable
+            req.body.echangeable,
+            req.body.image
         ];
         db.query(sql, [values], function (err, data, fields) {
             if (err) throw err;
