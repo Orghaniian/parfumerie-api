@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
 // get list de commandes du client par date de création , limite par défaut à 10
 router.get('/client/:id', function (req, res) {
     let limit = isNumeric(req.query.limit) ? req.query.limit : 10;
-    let sql = `SELECT * FROM commande WHERE Client_Code_client =  ${db.escape(req.params.id)} ORDER BY Date_commande LIMIT ${limit}`;
+    let sql = `SELECT * FROM commande WHERE Code_client =  ${db.escape(req.params.id)} ORDER BY Date_commande LIMIT ${limit}`;
     db.query(sql, function (err, data, fields) {
         if (err) throw err;
         res.json({
