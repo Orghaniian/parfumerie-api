@@ -79,7 +79,7 @@ router.delete('/:no', function (req, res) {
         console.log(data[0])
 
         //si l'article a déjà été commandé on ne le supprime pas pour garder une trace, on le rend seulement indisponible 
-        if (data[0]!=0){
+        if (data[0] !== 0){
             sql = `UPDATE article SET Disponible=0 WHERE No_article = ${db.escape(req.params.no)}`;
             db.query(sql, req.body, function (err, data, fields) {
                 if (err) throw err;
@@ -97,7 +97,7 @@ router.delete('/:no', function (req, res) {
                 res.json({
                     status: 200,
                     message: "Suppression article réussie",
-                    supressed: ref(true)
+                    supressed: true
                 })
             })
         }
