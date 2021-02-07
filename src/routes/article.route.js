@@ -68,13 +68,36 @@ router.put('/:no', function (req, res) {
 
 //delete article
 router.delete('/:no', function (req, res) {
-    let sql = `DELETE FROM article WHERE No_article = ${db.escape(req.params.no)}`;
+    let sql = `SELECT * FROM commande_has_article WHERE No_article = ${db.escape(req.params.no)}`;
     db.query(sql, req.body, function (err, data, fields) {
         if (err) throw err;
         res.json({
             status: 200,
-            message: "Suppression article réussie"
+            message: "L'article a déjà été commandé"
         })
+
+        //si l'article a déjà été commandé on ne le supprime pas pour garder une trace, on le rend seulement indisponible 
+        if (data){
+            sql = `UPDATE article SET Disponible=0 FROM article WHERE No_article = ${db.escape(req.params.no)}`;
+            db.query(sql, req.body, function (err, data, fields) {
+                if (err) throw err;
+                res.json({
+                    status: 200,
+                    message: "Modification article réussie"
+                })
+            })
+
+        }else{
+
+            sql = `DELETE FROM article WHERE No_article = ${db.escape(req.params.no)}`;
+            db.query(sql, req.body, function (err, data, fields) {
+                if (err) throw err;
+                res.json({
+                    status: 200,
+                    message: "Suppression article réussie"
+                })
+            })
+        }
     })
 })
 
