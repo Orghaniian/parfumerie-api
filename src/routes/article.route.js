@@ -31,16 +31,16 @@ router.post('/', function (req, res) {
         const missingKeys = keysToTest.filter(key => !Object.keys(req.body).includes(key))
         throw new HttpException(400, "Paramètre(s) manquant", {parametresManquants: missingKeys})
     }else{
-        let sql = `INSERT INTO article(nom, prix_unitaire, quantite_en_stock, disponible, en_cadeau, echangeable, image) VALUES (?)`;
+        let sql = `INSERT INTO article(nom, prix_unitaire, quantite_en_stock, disponible, en_cadeau, echangeable${req.body.image ? ", image" : ""}) VALUES (?)`;
         let values = [
             req.body.nom,
             req.body.prix_unitaire,
             req.body.quantite_en_stock,
             req.body.disponible,
             req.body.en_cadeau,
-            req.body.echangeable,
-            req.body.image
+            req.body.echangeable
         ];
+        if (req.body.image) values.push(req.body.image)
         db.query(sql, [values], function (err, data, fields) {
             if (err) throw err;
             res.json({
@@ -79,7 +79,7 @@ router.delete('/:no', function (req, res) {
         console.log(data[0])
 
         //si l'article a déjà été commandé on ne le supprime pas pour garder une trace, on le rend seulement indisponible 
-        if (data[0]!=0){ 
+        if (data[0]!=0){
             sql = `UPDATE article SET Disponible=0 WHERE No_article = ${db.escape(req.params.no)}`;
             db.query(sql, req.body, function (err, data, fields) {
                 if (err) throw err;
